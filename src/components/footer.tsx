@@ -111,6 +111,12 @@ export function Footer() {
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-6">
             <span className="text-lg font-semibold italic tracking-tight">FashionHero</span>
+            <Link
+              href="/seller"
+              className="text-xs font-semibold tracking-widest uppercase text-white border border-white/30 px-3 py-1.5 rounded hover:bg-white hover:text-[#1C1C1C] transition-colors"
+            >
+              Seller Panel
+            </Link>
             {/* Country selector */}
             <span className="text-xs text-white/40 border border-white/20 px-3 py-1 rounded">
               US ($)

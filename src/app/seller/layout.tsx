@@ -14,7 +14,7 @@ export default function SellerLayout({ children }: { children: React.ReactNode }
     <div className="min-h-screen bg-[#EEE9E3] flex flex-col">
       <header className="bg-white border-b border-[#E0DAD0]">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center gap-8">
-          <Link href="/seller" className="flex items-center gap-2 shrink-0">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <span className="font-bold tracking-tight text-[#1C1C1C]">FashionHero</span>
             <span className="text-[10px] font-semibold tracking-widest text-[#6B6B6B] border border-[#E0DAD0] rounded px-1.5 py-0.5">
               SELLER

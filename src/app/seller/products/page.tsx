@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
-import { Megaphone, Info } from "lucide-react";
+import { Sparkles, Info } from "lucide-react";
 
 const sellerProducts = products.filter((p) => p.sellerId === "s1");
 
@@ -46,6 +46,7 @@ export default function SellerProductsPage() {
                   {col}
                 </th>
               ))}
+              <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">View</th>
               <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">
                 <span className="flex items-center gap-1">
                   Visibility <Info size={12} className="text-[#6B6B6B]" />
@@ -110,6 +111,16 @@ export default function SellerProductsPage() {
                   {/* Views */}
                   <td className="px-4 py-3 text-[#1C1C1C]">{views.toLocaleString()}</td>
 
+                  {/* View link (moved before Visibility) */}
+                  <td className="px-4 py-3">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="text-[11px] font-semibold tracking-wider text-[#6B6B6B] hover:text-[#1C1C1C] uppercase transition-colors"
+                    >
+                      View
+                    </Link>
+                  </td>
+
                   {/* Visibility */}
                   <td className="px-4 py-3">
                     <span className="text-[11px] font-semibold tracking-wider text-[#1C1C1C] uppercase">
@@ -119,21 +130,13 @@ export default function SellerProductsPage() {
 
                   {/* Actions */}
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <Link
-                        href={`/seller/promote/${product.slug}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1C1C1C] text-white text-[11px] font-semibold tracking-wider uppercase rounded-lg hover:bg-[#333] transition-colors"
-                      >
-                        <Megaphone size={12} />
-                        Promote
-                      </Link>
-                      <Link
-                        href={`/products/${product.slug}`}
-                        className="text-[11px] font-semibold tracking-wider text-[#6B6B6B] hover:text-[#1C1C1C] uppercase transition-colors"
-                      >
-                        View
-                      </Link>
-                    </div>
+                    <Link
+                      href={`/seller/promote/${product.slug}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1C1C1C] text-white text-[11px] font-semibold tracking-wider uppercase rounded-lg hover:bg-[#333] transition-colors"
+                    >
+                      <Sparkles size={12} />
+                      Promote
+                    </Link>
                   </td>
                 </tr>
               );
