@@ -120,10 +120,13 @@ export default function SellerProductsPage() {
                   {/* Actions */}
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1C1C1C] text-white text-[11px] font-semibold tracking-wider uppercase rounded-lg hover:bg-[#333] transition-colors">
+                      <Link
+                        href={`/seller/promote/${product.slug}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1C1C1C] text-white text-[11px] font-semibold tracking-wider uppercase rounded-lg hover:bg-[#333] transition-colors"
+                      >
                         <Megaphone size={12} />
                         Promote
-                      </button>
+                      </Link>
                       <Link
                         href={`/products/${product.slug}`}
                         className="text-[11px] font-semibold tracking-wider text-[#6B6B6B] hover:text-[#1C1C1C] uppercase transition-colors"
