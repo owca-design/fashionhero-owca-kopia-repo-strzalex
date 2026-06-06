@@ -38,20 +38,16 @@ export default function SellerProductsPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-[#E0DAD0]">
-              {["Product", "Color", "Price", "Status", "Rating", "Views"].map((col) => (
-                <th
-                  key={col}
-                  className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase"
-                >
+              {["Product", "Color", "Price", "Rating", "Views"].map((col) => (
+                <th key={col} className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">
                   {col}
                 </th>
               ))}
-              <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">View</th>
+              <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">Promote</th>
               <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">
-                <span className="flex items-center gap-1">
-                  Visibility <Info size={12} className="text-[#6B6B6B]" />
-                </span>
+                <span className="flex items-center gap-1">Visibility <Info size={12} /></span>
               </th>
+              <th className="px-4 py-3 text-left text-[11px] font-semibold tracking-widest text-[#6B6B6B] uppercase">Status</th>
               <th className="px-4 py-3" />
             </tr>
           </thead>
@@ -66,69 +62,34 @@ export default function SellerProductsPage() {
                     i % 2 === 1 ? "bg-[#FAFAF9]" : ""
                   }`}
                 >
-                  {/* Product */}
+                  {/* 1. Product */}
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="w-14 h-14 rounded-lg overflow-hidden bg-[#EEE9E3] shrink-0">
-                        <Image
-                          src={color.image}
-                          alt={product.name}
-                          width={56}
-                          height={56}
-                          className="w-full h-full object-cover"
-                        />
+                        <Image src={color.image} alt={product.name} width={56} height={56} className="w-full h-full object-cover" />
                       </div>
                       <div>
-                        <p className="text-[12px] font-bold tracking-wider text-[#1C1C1C] uppercase">
-                          {product.name}
-                        </p>
+                        <p className="text-[12px] font-bold tracking-wider text-[#1C1C1C] uppercase">{product.name}</p>
                         <p className="text-[11px] text-[#6B6B6B] mt-0.5">{product.slug}</p>
                       </div>
                     </div>
                   </td>
 
-                  {/* Color */}
+                  {/* 2. Color */}
                   <td className="px-4 py-3 text-[#1C1C1C]">{color.name}</td>
 
-                  {/* Price */}
-                  <td className="px-4 py-3 font-semibold text-[#1C1C1C]">
-                    {product.price} zł
-                  </td>
+                  {/* 3. Price */}
+                  <td className="px-4 py-3 font-semibold text-[#1C1C1C]">{product.price} zł</td>
 
-                  {/* Status */}
-                  <td className="px-4 py-3">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wider bg-green-50 text-green-700 border border-green-200 uppercase">
-                      Active
-                    </span>
-                  </td>
-
-                  {/* Rating */}
+                  {/* 4. Rating */}
                   <td className="px-4 py-3 text-[#1C1C1C]">
-                    <span className="text-amber-500">★</span>{" "}
-                    {product.rating} ({product.reviewCount})
+                    <span className="text-amber-500">★</span>{" "}{product.rating} ({product.reviewCount})
                   </td>
 
-                  {/* Views */}
+                  {/* 5. Views */}
                   <td className="px-4 py-3 text-[#1C1C1C]">{views.toLocaleString()}</td>
 
-                  {/* View link (moved before Visibility) */}
-                  <td className="px-4 py-3">
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="text-[11px] font-semibold tracking-wider text-[#6B6B6B] hover:text-[#1C1C1C] uppercase transition-colors"
-                    >
-                      View
-                    </Link>
-                  </td>
-
-                  {/* Visibility */}
-                  <td className="px-4 py-3">
-                    <span className="text-[11px] font-semibold tracking-wider text-[#1C1C1C] uppercase">
-                      Public
-                    </span>
-                  </td>
-
-                  {/* Actions */}
+                  {/* 6. Promote button */}
                   <td className="px-4 py-3">
                     <Link
                       href={`/seller/promote/${product.slug}`}
@@ -136,6 +97,28 @@ export default function SellerProductsPage() {
                     >
                       <Sparkles size={12} />
                       Promote
+                    </Link>
+                  </td>
+
+                  {/* 7. Visibility */}
+                  <td className="px-4 py-3">
+                    <span className="text-[11px] font-semibold tracking-wider text-[#1C1C1C] uppercase">Public</span>
+                  </td>
+
+                  {/* 8. Status */}
+                  <td className="px-4 py-3">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wider bg-green-50 text-green-700 border border-green-200 uppercase">
+                      Active
+                    </span>
+                  </td>
+
+                  {/* 9. View link — no header */}
+                  <td className="px-4 py-3">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="text-[11px] font-semibold tracking-wider text-[#6B6B6B] hover:text-[#1C1C1C] uppercase transition-colors"
+                    >
+                      View
                     </Link>
                   </td>
                 </tr>
