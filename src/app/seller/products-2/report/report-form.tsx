@@ -8,15 +8,23 @@ import { track } from "@/lib/track";
 
 const fmt = (n: number) => n.toLocaleString("pl-PL");
 
+type RetentionDriver = "commission" | "demand_knowledge";
+
 export function ReportForm() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [pollChoice, setPollChoice] = useState<RetentionDriver | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     track("seller_demand_radar_email", { source: "products-2", email });
     setSubmitted(true);
+  };
+
+  const choosePoll = (choice: RetentionDriver) => {
+    track("seller_retention_driver_choice", { source: "products-2", choice });
+    setPollChoice(choice);
   };
 
   return (
@@ -58,21 +66,53 @@ export function ReportForm() {
 
           <div className="mt-10 bg-white rounded-sm border border-black/5 p-6">
             {submitted ? (
-              <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#E6F4EA] flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-[#1E7C3A]" />
+              <>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-[#E6F4EA] flex items-center justify-center flex-shrink-0">
+                    <Check className="w-4 h-4 text-[#1E7C3A]" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-bold text-[#1C1C1C]">Jesteś na liście</h2>
+                    <p className="text-sm text-[#6B6B6B] mt-1">
+                      Wyślemy Twój pierwszy raport popytu na <strong className="text-[#1C1C1C]">{email}</strong>,
+                      gdy tylko uruchomimy Demand Radar dla Twojego konta.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-lg font-bold text-[#1C1C1C]">Jesteś na liście</h2>
-                  <p className="text-sm text-[#6B6B6B] mt-1">
-                    Wyślemy Twój pierwszy raport popytu na <strong className="text-[#1C1C1C]">{email}</strong>,
-                    gdy tylko uruchomimy Demand Radar dla Twojego konta.
-                  </p>
-                  <Link href="/seller/products-2" className="inline-block mt-4 text-[11px] tracking-[0.1em] font-semibold uppercase text-[#1C1C1C] underline">
-                    Wróć do Products 2.0
-                  </Link>
+
+                {/* Mikro-ankieta: informacja vs pieniadze (kill risk #2) */}
+                <div className="mt-5 pt-5 border-t border-black/5">
+                  {pollChoice ? (
+                    <p className="text-[13px] text-[#1C1C1C] font-medium">
+                      Dzięki! To nam pomaga zrozumieć, co naprawdę trzyma sprzedawców na FashionHero.
+                    </p>
+                  ) : (
+                    <>
+                      <p className="text-[13px] font-semibold text-[#1C1C1C]">
+                        Szybkie pytanie: co bardziej by Cię zatrzymało na FashionHero?
+                      </p>
+                      <div className="mt-3 flex flex-col sm:flex-row gap-2">
+                        <button
+                          onClick={() => choosePoll("commission")}
+                          className="flex-1 h-11 px-4 border border-black/15 rounded-sm text-[12px] font-semibold uppercase tracking-[0.06em] text-[#1C1C1C] hover:border-[#1C1C1C] transition-colors"
+                        >
+                          Niższa prowizja
+                        </button>
+                        <button
+                          onClick={() => choosePoll("demand_knowledge")}
+                          className="flex-1 h-11 px-4 border border-black/15 rounded-sm text-[12px] font-semibold uppercase tracking-[0.06em] text-[#1C1C1C] hover:border-[#1C1C1C] transition-colors"
+                        >
+                          Wiedza o popycie
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
-              </div>
+
+                <Link href="/seller/products-2" className="inline-block mt-5 text-[11px] tracking-[0.1em] font-semibold uppercase text-[#1C1C1C] underline">
+                  Wróć do Products 2.0
+                </Link>
+              </>
             ) : (
               <>
                 <h2 className="text-lg font-bold text-[#1C1C1C]">Dołącz do wczesnego dostępu</h2>
