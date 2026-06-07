@@ -129,31 +129,27 @@ export default function SellerProducts2Page() {
             </tbody>
           </table>
 
-          {/* Locked full report → CTA (fake door) */}
-          <div className="relative">
-            {/* blurred faux-rows behind the lock */}
-            <div className="px-6 py-4 space-y-3 blur-[3px] select-none pointer-events-none" aria-hidden>
+          {/* Locked full report -> CTA (fake door) — normal flow, nic sie nie ucina */}
+          <div className="border-t border-[#E0DAD0] px-6 py-8 flex flex-col items-center text-center">
+            <div className="w-full max-w-md space-y-3 blur-[3px] select-none pointer-events-none mb-6" aria-hidden>
               {[0, 1, 2].map((r) => (
-                <div key={r} className="flex items-center gap-4">
+                <div key={r} className="flex items-center justify-center gap-4">
                   <div className="h-3 rounded bg-[#E6E1D9]" style={{ width: `${40 - r * 6}%` }} />
-                  <div className="h-3 w-12 rounded bg-[#E6E1D9]" />
                   <div className="h-3 w-12 rounded bg-[#E6E1D9]" />
                   <div className="h-3 w-20 rounded bg-[#E6E1D9]" />
                 </div>
               ))}
             </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-              <div className="w-9 h-9 rounded-full bg-[#1C1C1C] flex items-center justify-center mb-3">
-                <Lock size={16} className="text-white" />
-              </div>
-              <p className="text-sm font-semibold text-[#1C1C1C]">
-                Jeszcze {hiddenCount} nisz z popytem czeka w pełnym raporcie
-              </p>
-              <p className="text-[12px] text-[#6B6B6B] mt-1 mb-4 max-w-md">
-                Pełna lista zapytań, trendy 12-tygodniowe i szacowany popyt PLN per nisza — wiedza, której Forte nie ma, bo nie ma kupujących.
-              </p>
-              <DemandRadarCta />
+            <div className="w-9 h-9 rounded-full bg-[#1C1C1C] flex items-center justify-center mb-3">
+              <Lock size={16} className="text-white" />
             </div>
+            <p className="text-sm font-semibold text-[#1C1C1C]">
+              Jeszcze {hiddenCount} nisz z popytem czeka w pełnym raporcie
+            </p>
+            <p className="text-[12px] text-[#6B6B6B] mt-1 mb-5 max-w-md">
+              Pełna lista zapytań, trendy 12-tygodniowe i szacowany popyt PLN per nisza — wiedza, której Forte nie ma, bo nie ma kupujących.
+            </p>
+            <DemandRadarCta />
           </div>
         </div>
       </section>
