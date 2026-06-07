@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { LayoutDashboard, Package, ShoppingBag, BarChart2, RotateCcw, Bell, User } from "lucide-react";
+import { LayoutDashboard, Package, Radar, ShoppingBag, BarChart2, RotateCcw, Bell, User } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", href: "/seller", icon: LayoutDashboard },
   { label: "Products", href: "/seller/products", icon: Package },
+  { label: "Products 2.0", href: "/seller/products-2", icon: Radar },
   { label: "Orders", href: "/seller/orders", icon: ShoppingBag },
   { label: "Analytics", href: "/seller/analytics", icon: BarChart2 },
   { label: "Returns", href: "/seller/returns", icon: RotateCcw },

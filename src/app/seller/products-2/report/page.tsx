@@ -1,0 +1,5 @@
+import { ReportForm } from "./report-form";
+
+export default function DemandReportPage() {
+  return <ReportForm />;
+}
